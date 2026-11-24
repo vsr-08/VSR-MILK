@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V.S.R Milk | Pure Buffalo & Cow Milk, Fresh Curd</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: {
+              50: '#FDFBF7',
+              100: '#F7F2E7',
+              200: '#EFE5D1',
+              300: '#E2D0B1',
+            },
+            dairyGreen: {
+              50: '#F2F8F3',
+              100: '#E1EFE4',
+              600: '#2E6F40',
+              700: '#235631',
+              800: '#1B4326',
+            },
+            warmBrown: {
+              600: '#7B4B2A',
+              700: '#5C361D',
+              800: '#422512',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Playfair Display', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Smooth scrolling and subtle custom scrollbar */
+    html {
+      scroll-behavior: smooth;
+      background-color: #FDFBF7;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-up {
+      animation: fadeSlideUp 0.28s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-cream-50 text-warmBrown-800 font-sans antialiased selection:bg-dairyGreen-100 selection:text-dairyGreen-800 pb-24">
+
+  <!-- Toast Notification Banner (Replaces alert()) -->
+  <div id="toast-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-md pointer-events-none flex flex-col gap-2"></div>
+
+  <!-- Confirmation Modal (Replaces confirm()) -->
+  <div id="confirm-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+    <div class="bg-cream-50 border border-cream-300 rounded-2xl shadow-2xl max-w-sm w-full p-6 animate-fade-up">
+      <div class="flex items-center gap-3 text-warmBrown-800 mb-2">
+        <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 id="confirm-title" class="font-bold text-lg">Confirm Action</h3>
+      </div>
+      <p id="confirm-message" class="text-sm text-warmBrown-600 mb-5 leading-relaxed">Are you sure you want to proceed?</p>
+      <div class="flex gap-3 justify-end">
+        <button id="confirm-cancel-btn" class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-cream-200 text-warmBrown-700 hover:bg-cream-300 transition">
+          Cancel
+        </button>
+        <button id="confirm-ok-btn" class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-red-600 text-white hover:bg-red-700 transition">
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Header & Brand Identity -->
+  <header class="bg-gradient-to-br from-dairyGreen-800 via-dairyGreen-700 to-dairyGreen-600 text-cream-50 shadow-md sticky top-0 z-30">
+    <div class="max-w-3xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Custom SVG Farm Milk Pitcher & Leaf Emblem -->
+        <div class="w-11 h-11 rounded-2xl bg-cream-100 text-warmBrown-700 flex items-center justify-center shadow-inner border-2 border-cream-300 shrink-0">
+          <svg class="w-7 h-7" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 7H22L24 12V27C24 28.6569 22.6569 30 21 30H13C11.3431 30 10 28.6569 10 27V12L12 7Z" fill="#FDFBF7" stroke="#5C361D" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M24 13H27C28.6569 13 30 14.3431 30 16V20C30 21.6569 28.6569 23 27 23H24" stroke="#5C361D" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M10 18C13 16.5 16 19.5 19 18C21 17 22.5 17.5 24 18V27C24 28.6569 22.6569 30 21 30H13C11.3431 30 10 28.6569 10 27V18Z" fill="#E1EFE4"/>
+            <path d="M7 11C7 7.5 10.5 5.5 13 7C11 9.5 9.5 11.5 7 11Z" fill="#2E6F40"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-display text-xl sm:text-2xl font-extrabold tracking-tight leading-none text-cream-50">
+            V.S.R MILK
+          </h1>
+          <p class="text-[11px] sm:text-xs text-dairyGreen-100 font-medium tracking-wide mt-0.5">
+            FARM FRESH • PURE • UNADULTERATED
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Call / Business Number Pill -->
+      <div class="flex items-center gap-2">
+        <button id="header-mode-btn" onclick="enableCustomerModeUI(false)" title="Switch to Owner Dashboard" class="px-3 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-cream-50 text-xs font-semibold flex items-center gap-1.5 transition backdrop-blur-xs border border-white/20">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Owner Dashboard</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Switcher Tabs (Hidden in Direct Customer Storefront View) -->
+    <div id="owner-nav-tabs" class="hidden bg-dairyGreen-800/70 border-t border-white/10">
+      <div class="max-w-3xl mx-auto px-4 flex">
+        <button id="tab-btn-order" onclick="switchTab('order')" class="flex-1 py-3 text-sm font-bold border-b-3 border-cream-100 text-cream-50 flex items-center justify-center gap-2 transition">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span>Customer Order Form</span>
+        </button>
+        <button id="tab-btn-admin" onclick="switchTab('admin')" class="flex-1 py-3 text-sm font-semibold border-b-3 border-transparent text-dairyGreen-100 hover:text-white flex items-center justify-center gap-2 transition relative">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Orders & Promo</span>
+          <span id="pending-badge" class="hidden ml-1 px-2 py-0.5 text-[10px] font-extrabold rounded-full bg-amber-400 text-warmBrown-800">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Business Settings Modal (Allows owner to save their own WhatsApp number for incoming customer orders) -->
+  <div id="business-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+    <div class="bg-cream-50 border border-cream-300 rounded-2xl shadow-2xl max-w-md w-full p-6 animate-fade-up">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-display font-bold text-lg text-warmBrown-800 flex items-center gap-2">
+          <i class="fa-solid fa-cow text-dairyGreen-600"></i> V.S.R Milk Business Settings
+        </h3>
+        <button onclick="closeBusinessSettingsModal()" class="w-8 h-8 rounded-full bg-cream-200 text-warmBrown-700 flex items-center justify-center hover:bg-cream-300">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p class="text-xs text-warmBrown-600 mb-4 leading-relaxed">
+        Enter your <strong>V.S.R Milk WhatsApp Number</strong> below. When customers use this app to place an order, clicking <em>"Send Order via WhatsApp"</em> will send the order directly to your WhatsApp!
+      </p>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1">Your Dairy WhatsApp Number (10 digits)</label>
+          <div class="flex">
+            <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-cream-300 bg-cream-200 text-warmBrown-700 text-sm font-bold">+91</span>
+            <input id="owner-phone-input" type="tel" maxlength="10" placeholder="e.g. 9876543210" class="w-full rounded-r-xl border border-cream-300 bg-white px-3.5 py-2.5 text-sm font-semibold text-warmBrown-800 focus:outline-none focus:ring-2 focus:ring-dairyGreen-600" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1">Farm / Delivery Area Tagline</label>
+          <input id="owner-area-input" type="text" placeholder="e.g. Serving Fresh Daily in Hyderabad" class="w-full rounded-xl border border-cream-300 bg-white px-3.5 py-2.5 text-sm text-warmBrown-800 focus:outline-none focus:ring-2 focus:ring-dairyGreen-600" />
+        </div>
+      </div>
+      <div class="mt-5 flex gap-2 justify-end">
+        <button onclick="closeBusinessSettingsModal()" class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-cream-200 text-warmBrown-700">Cancel</button>
+        <button onclick="saveBusinessSettings()" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-dairyGreen-600 text-white hover:bg-dairyGreen-700 shadow-sm">Save Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-3xl mx-auto px-4 pt-4">
+
+    <!-- ========================================================= -->
+    <!-- VIEW 1: CUSTOMER ORDER FORM & PRODUCT CATALOG             -->
+    <!-- ========================================================= -->
+    <section id="view-order" class="space-y-5 animate-fade-up">
+
+      <!-- Promotional Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cream-200 via-cream-100 to-dairyGreen-50 border border-cream-300 p-4 sm:p-5 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-dairyGreen-600 text-white uppercase tracking-wider">
+              <i class="fa-solid fa-leaf"></i> Direct From Farm
+            </span>
+            <h2 class="font-display text-lg sm:text-xl font-bold text-warmBrown-800 leading-snug">
+              100% Pure Buffalo Milk, Fresh Cow Milk & Fresh Curd
+            </h2>
+            <p id="banner-area-subtitle" class="text-xs text-warmBrown-600 font-medium">
+              Zero preservatives • Hygienically packed • Morning & Evening doorstep delivery
+            </p>
+          </div>
+          <div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 shrink-0 border-t sm:border-t-0 border-cream-300 pt-2.5 sm:pt-0">
+            <button onclick="openShareWebsiteModal()" class="px-3.5 py-2 rounded-xl bg-dairyGreen-600 hover:bg-dairyGreen-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition">
+              <i class="fa-solid fa-share-nodes text-sm"></i> Share Order Link
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dedicated Customer Order App Link Generator & Sharing Card (Owner Only) -->
+      <div id="owner-share-link-card" class="hidden bg-gradient-to-br from-dairyGreen-50 via-white to-cream-100 rounded-2xl border-2 border-dairyGreen-600/35 p-4 sm:p-5 shadow-xs space-y-3.5">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-dairyGreen-600/15 text-dairyGreen-800 mb-1">
+              <i class="fa-solid fa-link text-dairyGreen-700"></i> Direct Customer Storefront Link
+            </span>
+            <h3 class="font-display font-bold text-base sm:text-lg text-warmBrown-800 leading-tight">
+              Shareable Customer App Order Link
+            </h3>
+            <p class="text-xs text-warmBrown-600 mt-0.5">
+              Send this link to your customers! When they open it, they see <strong>only the V.S.R Milk Order Page</strong> to pick milk/₹10 curd packets, enter their address &amp; phone number, and send their order straight to your WhatsApp.
+            </p>
+          </div>
+        </div>
+
+        <!-- Inline Quick Owner WhatsApp Number Input -->
+        <div class="bg-white rounded-xl border border-cream-300 p-3 space-y-2.5">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+            <label for="quick-wa-number" class="text-xs font-bold text-warmBrown-700 shrink-0">
+              Your V.S.R WhatsApp No:
+            </label>
+            <div class="flex flex-1">
+              <span class="inline-flex items-center px-2.5 rounded-l-lg border border-r-0 border-cream-300 bg-cream-200 text-warmBrown-700 text-xs font-bold">+91</span>
+              <input
+                id="quick-wa-number"
+                type="tel"
+                maxlength="10"
+                oninput="handleQuickWaNumberChange(this.value)"
+                placeholder="Enter your 10-digit WhatsApp number"
+                class="w-full rounded-r-lg border border-cream-300 bg-cream-50/70 px-3 py-2 text-xs sm:text-sm font-bold text-warmBrown-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-dairyGreen-600"
+              />
+            </div>
+          </div>
+
+          <!-- Generated Direct Customer Storefront Link Preview Box -->
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-warmBrown-600">Direct Customer App Link:</span>
+              <button type="button" onclick="previewCustomerMode()" class="text-[11px] font-bold text-dairyGreen-700 hover:underline flex items-center gap-1">
+                Preview Customer View <i class="fa-solid fa-eye text-[10px]"></i>
+              </button>
+            </div>
+            <input
+              id="generated-wa-link"
+              type="text"
+              readonly
+              class="w-full rounded-lg border border-cream-300 bg-cream-100/80 px-3 py-2 text-xs font-mono text-dairyGreen-800 select-all focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <!-- Single-Tap Copy Link & Share on WhatsApp Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <button
+            type="button"
+            onclick="copyCustomerOrderLink()"
+            class="w-full py-3 px-4 rounded-xl bg-warmBrown-700 hover:bg-warmBrown-800 text-cream-50 font-bold text-xs sm:text-sm shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.99]"
+          >
+            <i class="fa-regular fa-copy text-sm"></i>
+            <span>Copy Customer Order Link</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="shareCustomerOrderInvite()"
+            class="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs sm:text-sm shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.99]"
+          >
+            <i class="fa-brands fa-whatsapp text-base"></i>
+            <span>Share App Link on WhatsApp</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Catalog Selection Cards -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-display font-bold text-base sm:text-lg text-warmBrown-800 flex items-center gap-2">
+            <i class="fa-solid fa-jug-detergent text-dairyGreen-600"></i> Select Fresh Milk &amp; Curd
+          </h3>
+          <button type="button" onclick="resetQuantities()" class="text-xs font-bold text-warmBrown-600 hover:text-red-600 underline">
+            Clear All
+          </button>
+        </div>
+
+        <!-- Pure Buffalo Milk Card -->
+        <div class="bg-white rounded-2xl border border-cream-300 overflow-hidden shadow-xs">
+          <div class="bg-warmBrown-800 text-cream-50 px-4 py-2.5 flex items-center justify-between">
+            <span class="font-bold text-sm flex items-center gap-2">
+              <i class="fa-solid fa-droplet text-amber-300"></i> Pure Buffalo Milk
+            </span>
+            <span class="text-[11px] font-semibold bg-white/15 px-2 py-0.5 rounded-full">Rich &amp; Creamy</span>
+          </div>
+          <div id="catalog-buffalo" class="divide-y divide-cream-200"></div>
+        </div>
+
+        <!-- Fresh Cow Milk Card -->
+        <div class="bg-white rounded-2xl border border-cream-300 overflow-hidden shadow-xs">
+          <div class="bg-dairyGreen-700 text-cream-50 px-4 py-2.5 flex items-center justify-between">
+            <span class="font-bold text-sm flex items-center gap-2">
+              <i class="fa-solid fa-cow text-cream-100"></i> Fresh Cow Milk
+            </span>
+            <span class="text-[11px] font-semibold bg-white/15 px-2 py-0.5 rounded-full">Light &amp; Nutritious</span>
+          </div>
+          <div id="catalog-cow" class="divide-y divide-cream-200"></div>
+        </div>
+
+        <!-- Fresh Curd Card (Single Variety) -->
+        <div class="bg-white rounded-2xl border border-cream-300 overflow-hidden shadow-xs">
+          <div class="bg-amber-800 text-cream-50 px-4 py-2.5 flex items-center justify-between">
+            <span class="font-bold text-sm flex items-center gap-2">
+              <i class="fa-solid fa-bowl-food text-amber-200"></i> Fresh Curd
+            </span>
+            <span class="text-[11px] font-semibold bg-white/15 px-2 py-0.5 rounded-full">Thick &amp; Fresh</span>
+          </div>
+          <div id="catalog-curd" class="divide-y divide-cream-200"></div>
+        </div>
+      </div>
+
+      <!-- Live Order Summary Card -->
+      <div class="bg-cream-100 rounded-2xl border-2 border-dairyGreen-600/40 p-4 sm:p-5 shadow-xs">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-display font-bold text-base sm:text-lg text-warmBrown-800 flex items-center gap-2">
+            <i class="fa-solid fa-receipt text-dairyGreen-600"></i> Live Order Summary
+          </h3>
+          <span id="summary-item-count" class="text-xs font-bold px-2.5 py-1 rounded-full bg-dairyGreen-100 text-dairyGreen-800">
+            0 Items
+          </span>
+        </div>
+
+        <div id="summary-items-list" class="space-y-2 text-sm text-warmBrown-700 mb-3">
+          <p class="text-xs text-warmBrown-600 italic py-2">No items selected yet. Use the + buttons above to add milk or curd.</p>
+        </div>
+
+        <div class="border-t border-cream-300 pt-3 flex items-center justify-between">
+          <div>
+            <span class="text-xs uppercase font-bold tracking-wider text-warmBrown-600 block">Total Payable Amount</span>
+            <span class="text-[11px] text-warmBrown-600">Cash on Delivery / UPI on Delivery</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-dairyGreen-700">
+            ₹<span id="summary-total">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Details & Delivery Preferences Form -->
+      <div class="bg-white rounded-2xl border border-cream-300 p-4 sm:p-5 shadow-xs space-y-4">
+        <h3 class="font-display font-bold text-base sm:text-lg text-warmBrown-800 flex items-center gap-2 border-b border-cream-200 pb-2.5">
+          <i class="fa-solid fa-address-card text-warmBrown-600"></i> Customer & Delivery Details
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Customer Name -->
+          <div>
+            <label for="cust-name" class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1">
+              Customer Name <span class="text-red-500">*</span>
+            </label>
+            <input id="cust-name" type="text" placeholder="Enter full name" class="w-full rounded-xl border border-cream-300 bg-cream-50/60 px-3.5 py-2.5 text-sm text-warmBrown-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-dairyGreen-600" />
+          </div>
+
+          <!-- Phone Number -->
+          <div>
+            <label for="cust-phone" class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1">
+              Phone / WhatsApp Number <span class="text-red-500">*</span>
+            </label>
+            <div class="flex">
+              <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-cream-300 bg-cream-200 text-warmBrown-700 text-xs font-bold">+91</span>
+              <input id="cust-phone" type="tel" maxlength="10" placeholder="10-digit mobile number" class="w-full rounded-r-xl border border-cream-300 bg-cream-50/60 px-3.5 py-2.5 text-sm text-warmBrown-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-dairyGreen-600" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery Address / Area -->
+        <div>
+          <label for="cust-address" class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1">
+            Delivery Address / Area / Landmark <span class="text-red-500">*</span>
+          </label>
+          <textarea id="cust-address" rows="2" placeholder="House No., Street, Colony / Area..." class="w-full rounded-xl border border-cream-300 bg-cream-50/60 px-3.5 py-2.5 text-sm text-warmBrown-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-dairyGreen-600"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Delivery Slot -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1.5">
+              Delivery Slot
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="delivery-slot" value="Morning (6 AM - 8 AM)" checked class="peer sr-only" />
+                <div class="p-2.5 rounded-xl border border-cream-300 bg-cream-50 text-center peer-checked:bg-dairyGreen-600 peer-checked:text-white peer-checked:border-dairyGreen-600 transition">
+                  <div class="text-xs font-bold"><i class="fa-solid fa-sun mr-1"></i>Morning</div>
+                  <div class="text-[10px] opacity-90">6 AM – 8 AM</div>
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="delivery-slot" value="Evening (5 PM - 7 PM)" class="peer sr-only" />
+                <div class="p-2.5 rounded-xl border border-cream-300 bg-cream-50 text-center peer-checked:bg-warmBrown-700 peer-checked:text-white peer-checked:border-warmBrown-700 transition">
+                  <div class="text-xs font-bold"><i class="fa-solid fa-moon mr-1"></i>Evening</div>
+                  <div class="text-[10px] opacity-90">5 PM – 7 PM</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Order Type -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-warmBrown-700 mb-1.5">
+              Order Type
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="order-type" value="One-time Order" checked class="peer sr-only" />
+                <div class="p-2.5 rounded-xl border border-cream-300 bg-cream-50 text-center peer-checked:bg-dairyGreen-600 peer-checked:text-white peer-checked:border-dairyGreen-600 transition">
+                  <div class="text-xs font-bold">One-time</div>
+                  <div class="text-[10px] opacity-90">Single Delivery</div>
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="order-type" value="Daily Subscription" class="peer sr-only" />
+                <div class="p-2.5 rounded-xl border border-cream-300 bg-cream-50 text-center peer-checked:bg-warmBrown-700 peer-checked:text-white peer-checked:border-warmBrown-700 transition">
+                  <div class="text-xs font-bold">Daily Plan</div>
+                  <div class="text-[10px] opacity-90">Repeat Daily</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Action Buttons -->
+        <div id="order-submit-buttons" class="pt-2 grid grid-cols-1 gap-3">
+          <button onclick="handleSendOrderWhatsApp()" class="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Send Order via WhatsApp</span>
+          </button>
+
+          <button id="save-dashboard-btn" onclick="handleSaveOrderDashboard()" class="hidden w-full py-3.5 px-4 rounded-xl bg-warmBrown-700 hover:bg-warmBrown-800 text-cream-50 font-bold text-sm shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Save Order to Dashboard</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: BUSINESS / ADMIN TAB (ORDERS & PROMOTIONS)        -->
+    <!-- ========================================================= -->
+    <section id="view-admin" class="hidden space-y-5 animate-fade-up">
+
+      <!-- Daily Summary Stats Cards -->
+      <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+        <div class="bg-white rounded-2xl border border-cream-300 p-3.5 shadow-xs text-center">
+          <div class="w-8 h-8 mx-auto mb-1.5 rounded-xl bg-dairyGreen-100 text-dairyGreen-700 flex items-center justify-center text-sm">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <div id="stat-total-orders" class="text-xl sm:text-2xl font-extrabold text-warmBrown-800">0</div>
+          <div class="text-[11px] font-semibold text-warmBrown-600">Total Orders</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-cream-300 p-3.5 shadow-xs text-center">
+          <div class="w-8 h-8 mx-auto mb-1.5 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-sm">
+            <i class="fa-solid fa-bottle-droplet"></i>
+          </div>
+          <div id="stat-total-volume" class="text-sm sm:text-base font-extrabold text-warmBrown-800 leading-tight py-1">0 L / 0 Curd</div>
+          <div class="text-[11px] font-semibold text-warmBrown-600">Milk & Curd Sold</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-cream-300 p-3.5 shadow-xs text-center">
+          <div class="w-8 h-8 mx-auto mb-1.5 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-sm">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+          </div>
+          <div class="text-xl sm:text-2xl font-extrabold text-dairyGreen-700">₹<span id="stat-total-revenue">0</span></div>
+          <div class="text-[11px] font-semibold text-warmBrown-600">Total Revenue</div>
+        </div>
+      </div>
+
+      <!-- Customer Promotion Broadcast Tool -->
+      <div class="bg-gradient-to-br from-cream-100 to-dairyGreen-50 rounded-2xl border border-cream-300 p-4 sm:p-5 shadow-xs space-y-3.5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-display font-bold text-base sm:text-lg text-warmBrown-800 flex items-center gap-2">
+              <i class="fa-solid fa-bullhorn text-dairyGreen-600"></i> Customer Promotion Broadcast
+            </h3>
+            <p class="text-xs text-warmBrown-600">Select a ready-made message to promote V.S.R Milk & Curd on WhatsApp</p>
+          </div>
+        </div>
+
+        <!-- Template Selector Pills -->
+        <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+          <button onclick="selectPromoTemplate(0)" id="promo-pill-0" class="promo-pill shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-dairyGreen-600 text-white transition">
+            🥛 Daily Fresh Milk & Curd
+          </button>
+          <button onclick="selectPromoTemplate(1)" id="promo-pill-1" class="promo-pill shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-warmBrown-700 border border-cream-300 transition">
+            🌅 Morning Slot Reminder
+          </button>
+          <button onclick="selectPromoTemplate(2)" id="promo-pill-2" class="promo-pill shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-warmBrown-700 border border-cream-300 transition">
+            🎉 Festival / Function Bulk Curd
+          </button>
+        </div>
+
+        <!-- Editable Promo Message Box -->
+        <div>
+          <textarea id="promo-message-box" rows="6" class="w-full rounded-xl border border-cream-300 bg-white p-3 text-xs sm:text-sm text-warmBrown-800 leading-relaxed focus:outline-none focus:ring-2 focus:ring-dairyGreen-600"></textarea>
+        </div>
+
+        <!-- Optional Direct Customer Number for Promo -->
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <div class="flex flex-1">
+            <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-cream-300 bg-cream-200 text-warmBrown-700 text-xs font-bold">+91</span>
+            <input id="promo-target-phone" type="tel" maxlength="10" placeholder="Optional: Customer number (leave blank to share)" class="w-full rounded-r-xl border border-cream-300 bg-white px-3 py-2.5 text-xs sm:text-sm text-warmBrown-800 focus:outline-none focus:ring-2 focus:ring-dairyGreen-600" />
+          </div>
+          <div class="flex gap-2">
+            <button onclick="copyPromoMessage()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-warmBrown-700 hover:bg-warmBrown-800 text-cream-50 text-xs font-bold flex items-center justify-center gap-1.5 transition">
+              <i class="fa-regular fa-copy"></i> Copy Promo
+            </button>
+            <button onclick="sharePromoWhatsApp()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition">
+              <i class="fa-brands fa-whatsapp text-sm"></i> Share on WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Management List -->
+      <div class="space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <h3 class="font-display font-bold text-lg text-warmBrown-800 flex items-center gap-2">
+            <i class="fa-solid fa-clipboard-list text-warmBrown-600"></i> Customer Orders Log
+          </h3>
+
+          <!-- Slot & Status Filters -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button onclick="setOrderFilter('ALL')" id="filter-ALL" class="order-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-warmBrown-700 text-white">All</button>
+            <button onclick="setOrderFilter('MORNING')" id="filter-MORNING" class="order-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-cream-200 text-warmBrown-700">Morning</button>
+            <button onclick="setOrderFilter('EVENING')" id="filter-EVENING" class="order-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-cream-200 text-warmBrown-700">Evening</button>
+            <button onclick="setOrderFilter('PENDING')" id="filter-PENDING" class="order-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-cream-200 text-warmBrown-700">Pending</button>
+          </div>
+        </div>
+
+        <!-- Saved Orders Container -->
+        <div id="orders-list-container" class="space-y-3"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Bottom Live Cart Bar (Visible on Customer Order Tab when items > 0) -->
+  <div id="sticky-cart-bar" class="fixed bottom-0 inset-x-0 z-30 bg-warmBrown-800 text-cream-50 border-t border-warmBrown-600 px-4 py-3 shadow-2xl transition-transform duration-300 translate-y-full">
+    <div class="max-w-3xl mx-auto flex items-center justify-between gap-3">
+      <div>
+        <div class="text-xs text-cream-200 font-medium">
+          <span id="sticky-count">0</span> items selected
+        </div>
+        <div class="text-lg font-extrabold text-white">
+          Total: ₹<span id="sticky-total">0</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="#cust-name" class="px-3.5 py-2.5 rounded-xl bg-cream-100 text-warmBrown-800 text-xs font-bold hover:bg-white transition">
+          Fill Address
+        </a>
+        <button onclick="handleSendOrderWhatsApp()" class="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
+          <i class="fa-brands fa-whatsapp text-base"></i> Order Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Share Website Link Modal (Accessible anytime via "Share Order Link") -->
+  <div id="share-website-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+    <div class="bg-cream-50 border border-cream-300 rounded-2xl shadow-2xl max-w-md w-full p-6 animate-fade-up space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display font-bold text-lg text-warmBrown-800 flex items-center gap-2">
+          <i class="fa-solid fa-link text-dairyGreen-600"></i> Customer Website Order Link
+        </h3>
+        <button onclick="closeShareWebsiteModal()" class="w-8 h-8 rounded-full bg-cream-200 text-warmBrown-700 flex items-center justify-center hover:bg-cream-300">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-warmBrown-600 leading-relaxed">
+        Share this website link with your customers on WhatsApp. When they open it, they can directly pick their milk &amp; ₹10 curd packets, add their phone number &amp; address, and send the order to you!
+      </p>
+
+      <!-- Private Preview Warning + One-Tap Download index.html -->
+      <div id="preview-host-warning" class="hidden rounded-xl bg-amber-50 border border-amber-300 p-3 space-y-2">
+        <div class="flex items-start gap-2 text-xs text-amber-900">
+          <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i>
+          <div>
+            <strong>Why customers see "Not Found":</strong> You are currently in a private preview. Download <code>index.html</code> below and host it <strong>100% free forever (no subscription)</strong> on <strong>GitHub Pages (github.com)</strong> or <strong>Cloudflare Pages (pages.cloudflare.com)</strong> to get a real <code>https://</code> link!
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="downloadIndexHtml()"
+          class="w-full py-2 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition"
+        >
+          <i class="fa-solid fa-download"></i>
+          <span>Download index.html (100% Free Hosting)</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 bg-white p-3.5 rounded-xl border border-cream-300">
+        <div>
+          <label for="modal-wa-number" class="block text-[11px] font-bold uppercase tracking-wider text-warmBrown-700 mb-1">
+            Your V.S.R WhatsApp Number (to receive orders)
+          </label>
+          <div class="flex">
+            <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-cream-300 bg-cream-200 text-warmBrown-700 text-xs font-bold">+91</span>
+            <input
+              id="modal-wa-number"
+              type="tel"
+              maxlength="10"
+              oninput="handleQuickWaNumberChange(this.value)"
+              placeholder="Enter 10-digit WhatsApp number"
+              class="w-full rounded-r-lg border border-cream-300 bg-cream-50/70 px-3 py-2 text-xs sm:text-sm font-bold text-warmBrown-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-dairyGreen-600"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-warmBrown-600 mb-1">
+            Direct Website Link for Customers:
+          </label>
+          <input
+            id="modal-generated-link"
+            type="text"
+            readonly
+            class="w-full rounded-lg border border-cream-300 bg-cream-100/80 px-3 py-2 text-xs font-mono text-dairyGreen-800 select-all focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <button
+          type="button"
+          onclick="copyCustomerOrderLink('modal-generated-link')"
+          class="w-full py-3 px-4 rounded-xl bg-warmBrown-700 hover:bg-warmBrown-800 text-cream-50 font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition"
+        >
+          <i class="fa-regular fa-copy text-sm"></i>
+          <span>Copy Website Link</span>
+        </button>
+
+        <button
+          type="button"
+          onclick="shareCustomerOrderInvite()"
+          class="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition"
+        >
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>Send on WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+    /**
+     * V.S.R Milk Product Catalog with Exact Pricing
+     */
+    const PRODUCTS = [
+      // Pure Buffalo Milk
+      { id: 'buf_250', category: 'buffalo', name: 'Pure Buffalo Milk', size: '250 ml', price: 30, litres: 0.25, curds: 0 },
+      { id: 'buf_500', category: 'buffalo', name: 'Pure Buffalo Milk', size: '500 ml', price: 50, litres: 0.5, curds: 0 },
+      { id: 'buf_1000', category: 'buffalo', name: 'Pure Buffalo Milk', size: '1 Litre', price: 100, litres: 1.0, curds: 0 },
+
+      // Fresh Cow Milk
+      { id: 'cow_250', category: 'cow', name: 'Fresh Cow Milk', size: '250 ml', price: 40, litres: 0.25, curds: 0 },
+      { id: 'cow_500', category: 'cow', name: 'Fresh Cow Milk', size: '500 ml', price: 70, litres: 0.5, curds: 0 },
+      { id: 'cow_1000', category: 'cow', name: 'Fresh Cow Milk', size: '1 Litre', price: 120, litres: 1.0, curds: 0 },
+
+      // Fresh Curd (Single Variety)
+      { id: 'curd_100', category: 'curd', name: 'Fresh Curd Packet', size: 'Curd Packet (100 gm)', badge: 'Fresh & Thick', price: 10, litres: 0, curds: 1 },
+    ];
+
+    /**
+     * Promotional WhatsApp Templates
+     */
+    const PROMO_TEMPLATES = [
+      `🥛 *V.S.R MILK – 100% Pure & Farm Fresh!* 🌿\n\nStart your day with pure, unadulterated dairy delivered straight to your doorstep:\n\n🐃 *Pure Buffalo Milk:*\n• 250 ml – ₹30\n• 500 ml – ₹50\n• 1 Litre – ₹100\n\n🐄 *Fresh Cow Milk:*\n• 250 ml – ₹40\n• 500 ml – ₹70\n• 1 Litre – ₹120\n\n🥣 *Fresh Curd:*\n• Curd Packet (100 gm) – ₹10\n\n✅ Morning (6 AM - 8 AM) & Evening (5 PM - 7 PM) Delivery!\nReply to place your order today! 🙏`,
+
+      `🌅 *Good Morning from V.S.R Milk!* 🥛\n\nOur fresh morning batch of *Pure Buffalo Milk*, *Fresh Cow Milk*, and *Curd Packet (100 gm) – ₹10* is ready for delivery (6 AM – 8 AM).\n\nWant to add extra milk or ₹10 curd packets to today's delivery? Reply with your quantity now! 🚚💨`,
+
+      `🎉 *Special Occasion / Family Gathering? Order Bulk Curd Packets from V.S.R Milk!* 🥣\n\nThick, creamy *Fresh Curd Packets* available at just *₹10 per Curd Packet (100 gm)*.\n\nBook in advance for guaranteed fresh morning or evening delivery! 📞`
+    ];
+
+    // State Management
+    let quantities = {};
+    let savedOrders = [];
+    let currentFilter = 'ALL';
+    let isCustomerMode = true;
+    let businessSettings = {
+      phone: '',
+      area: 'Zero preservatives • Hygienically packed • Morning & Evening doorstep delivery'
+    };
+
+    // Initialize Application on Window Load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadFromStorage();
+      checkUrlCustomerMode();
+      renderCatalog();
+      updateOrderSummary();
+      selectPromoTemplate(0);
+      renderOrdersDashboard();
+      applyBusinessSettingsToUI();
+      updateCustomerWaLinkUI();
+    });
+
+    /**
+     * Default directly to Customer Storefront View so customers can immediately order.
+     * Owner can switch to Owner Dashboard anytime or open with ?admin=1.
+     */
+    function checkUrlCustomerMode() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const waParam = (params.get('wa') || '').replace(/\D/g, '').slice(-10);
+        if (waParam.length === 10) {
+          businessSettings.phone = waParam;
+        }
+        if (params.get('admin') === '1') {
+          enableCustomerModeUI(false);
+        } else {
+          enableCustomerModeUI(true);
+        }
+      } catch (err) {
+        console.error('Error parsing URL parameters:', err);
+        enableCustomerModeUI(true);
+      }
+    }
+
+    function enableCustomerModeUI(enabled) {
+      isCustomerMode = enabled;
+      const navTabs = document.getElementById('owner-nav-tabs');
+      const shareCard = document.getElementById('owner-share-link-card');
+      const saveDashBtn = document.getElementById('save-dashboard-btn');
+      const submitGrid = document.getElementById('order-submit-buttons');
+      const headerModeBtn = document.getElementById('header-mode-btn');
+
+      if (enabled) {
+        switchTab('order');
+        if (navTabs) navTabs.classList.add('hidden');
+        if (shareCard) shareCard.classList.add('hidden');
+        if (saveDashBtn) saveDashBtn.classList.add('hidden');
+        if (submitGrid) submitGrid.className = 'pt-2 grid grid-cols-1 gap-3';
+        if (headerModeBtn) {
+          headerModeBtn.innerHTML = `<i class="fa-solid fa-user-shield"></i><span>Owner Dashboard</span>`;
+          headerModeBtn.title = 'Switch to Owner Dashboard';
+          headerModeBtn.onclick = () => enableCustomerModeUI(false);
+        }
+      } else {
+        if (navTabs) navTabs.classList.remove('hidden');
+        if (shareCard) shareCard.classList.remove('hidden');
+        if (saveDashBtn) saveDashBtn.classList.remove('hidden');
+        if (submitGrid) submitGrid.className = 'pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3';
+        if (headerModeBtn) {
+          headerModeBtn.innerHTML = `<i class="fa-solid fa-store"></i><span>My Dairy Info</span>`;
+          headerModeBtn.title = 'Set Your Dairy WhatsApp Number';
+          headerModeBtn.onclick = openBusinessSettingsModal;
+        }
+      }
+    }
+
+    function previewCustomerMode() {
+      enableCustomerModeUI(true);
+      showToast('Viewing as Customer! Tap "Owner Dashboard" at top-right to return.', 'info');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Load saved orders and settings from localStorage
+     */
+    function loadFromStorage() {
+      try {
+        const storedOrders = localStorage.getItem('vsr_milk_orders');
+        if (storedOrders) {
+          savedOrders = JSON.parse(storedOrders);
+        } else {
+          savedOrders = [
+            {
+              id: 'ORD-1001',
+              customerName: 'Ramesh Kumar',
+              customerPhone: '9876543210',
+              address: 'Plot 12, Sri Sai Nagar, Near Temple',
+              slot: 'Morning (6 AM - 8 AM)',
+              orderType: 'Daily Subscription',
+              items: [
+                { id: 'buf_1000', category: 'buffalo', name: 'Pure Buffalo Milk', size: '1 Litre', price: 100, litres: 1.0, curds: 0, qty: 1, subtotal: 100 },
+                { id: 'curd_100', category: 'curd', name: 'Fresh Curd Packet', size: 'Curd Packet (100 gm)', price: 10, litres: 0, curds: 1, qty: 2, subtotal: 20 }
+              ],
+              totalAmount: 120,
+              status: 'Pending',
+              createdAt: '06:30 AM'
+            }
+          ];
+          persistOrders();
+        }
+
+        const storedSettings = localStorage.getItem('vsr_milk_settings');
+        if (storedSettings) {
+          businessSettings = { ...businessSettings, ...JSON.parse(storedSettings) };
+        }
+      } catch (err) {
+        console.error('Error loading local data:', err);
+      }
+    }
+
+    function persistOrders() {
+      try {
+        localStorage.setItem('vsr_milk_orders', JSON.stringify(savedOrders));
+      } catch (err) {
+        console.error('Error saving orders:', err);
+      }
+    }
+
+    /**
+     * Render Product Catalog Items
+     */
+    function renderCatalog() {
+      const containers = {
+        buffalo: document.getElementById('catalog-buffalo'),
+        cow: document.getElementById('catalog-cow'),
+        curd: document.getElementById('catalog-curd'),
+      };
+
+      Object.values(containers).forEach(el => (el.innerHTML = ''));
+
+      PRODUCTS.forEach(product => {
+        const qty = quantities[product.id] || 0;
+        const row = document.createElement('div');
+        row.className = 'px-4 py-3.5 flex items-center justify-between gap-3 hover:bg-cream-50/80 transition';
+        row.innerHTML = `
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-bold text-sm sm:text-base text-warmBrown-800">${product.size}</span>
+              ${product.category === 'curd' ? `<span class="text-xs font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-200">${product.badge}</span>` : ''}
+            </div>
+            <div class="text-sm font-extrabold text-dairyGreen-700 mt-0.5">
+              ₹${product.price} <span class="text-[11px] font-normal text-warmBrown-600">/ ${product.category === 'curd' ? 'packet' : 'pack'}</span>
+            </div>
+          </div>
+
+          <!-- Quantity Stepper (+ / -) -->
+          <div class="flex items-center gap-2 bg-cream-100 border border-cream-300 rounded-xl p-1 shrink-0">
+            <button
+              type="button"
+              onclick="updateQty('${product.id}', -1)"
+              aria-label="Decrease quantity"
+              class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-base transition ${
+                qty > 0
+                  ? 'bg-white text-warmBrown-800 shadow-xs hover:bg-cream-200 active:scale-95'
+                  : 'text-warmBrown-600/40 cursor-not-allowed'
+              }"
+            >
+              <i class="fa-solid fa-minus text-xs"></i>
+            </button>
+            <span id="qty-${product.id}" class="w-7 text-center font-extrabold text-sm text-warmBrown-800 select-none">
+              ${qty}
+            </span>
+            <button
+              type="button"
+              onclick="updateQty('${product.id}', 1)"
+              aria-label="Increase quantity"
+              class="w-9 h-9 rounded-lg bg-dairyGreen-600 hover:bg-dairyGreen-700 text-white shadow-xs flex items-center justify-center font-bold text-base transition active:scale-95"
+            >
+              <i class="fa-solid fa-plus text-xs"></i>
+            </button>
+          </div>
+        `;
+        containers[product.category].appendChild(row);
+      });
+    }
+
+    /**
+     * Update Quantity & Recalculate Totals
+     */
+    function updateQty(productId, delta) {
+      const current = quantities[productId] || 0;
+      const next = Math.max(0, current + delta);
+      if (next === 0) {
+        delete quantities[productId];
+      } else {
+        quantities[productId] = next;
+      }
+      renderCatalog();
+      updateOrderSummary();
+    }
+
+    function resetQuantities() {
+      quantities = {};
+      renderCatalog();
+      updateOrderSummary();
+      showToast('Selection cleared', 'info');
+    }
+
+    function getSelectedItems() {
+      const items = [];
+      PRODUCTS.forEach(p => {
+        const qty = quantities[p.id] || 0;
+        if (qty > 0) {
+          items.push({
+            ...p,
+            qty,
+            subtotal: p.price * qty
+          });
+        }
+      });
+      return items;
+    }
+
+    function updateOrderSummary() {
+      const items = getSelectedItems();
+      const listEl = document.getElementById('summary-items-list');
+      const totalEl = document.getElementById('summary-total');
+      const countEl = document.getElementById('summary-item-count');
+      const stickyBar = document.getElementById('sticky-cart-bar');
+      const stickyCount = document.getElementById('sticky-count');
+      const stickyTotal = document.getElementById('sticky-total');
+
+      let totalAmount = 0;
+      let totalUnits = 0;
+
+      if (items.length === 0) {
+        listEl.innerHTML = `<p class="text-xs text-warmBrown-600 italic py-1.5">No items selected yet. Tap <strong>+</strong> above to add milk or curd.</p>`;
+        countEl.textContent = '0 Items';
+        totalEl.textContent = '0';
+        stickyBar.classList.add('translate-y-full');
+        return;
+      }
+
+      listEl.innerHTML = items
+        .map(item => {
+          totalAmount += item.subtotal;
+          totalUnits += item.qty;
+          return `
+            <div class="flex items-center justify-between text-xs sm:text-sm py-1 border-b border-cream-200/70 last:border-none">
+              <div class="font-medium text-warmBrown-800">
+                <span class="font-bold text-dairyGreen-700">${item.qty}×</span> ${item.name} (${item.size})
+              </div>
+              <div class="font-bold text-warmBrown-800">₹${item.subtotal}</div>
+            </div>
+          `;
+        })
+        .join('');
+
+      countEl.textContent = `${totalUnits} ${totalUnits === 1 ? 'Pack' : 'Packs'}`;
+      totalEl.textContent = totalAmount;
+
+      // Update Sticky Bottom Bar (only show when on Order tab)
+      stickyCount.textContent = totalUnits;
+      stickyTotal.textContent = totalAmount;
+      const isOrderTabActive = !document.getElementById('view-order').classList.contains('hidden');
+      if (isOrderTabActive) {
+        stickyBar.classList.remove('translate-y-full');
+      }
+    }
+
+    /**
+     * Validate Customer Order Form
+     */
+    function validateOrderForm() {
+      const items = getSelectedItems();
+      if (items.length === 0) {
+        showToast('Please select at least one milk or curd item first.', 'error');
+        return null;
+      }
+
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim().replace(/\D/g, '');
+      const address = document.getElementById('cust-address').value.trim();
+      const slot = document.querySelector('input[name="delivery-slot"]:checked')?.value || 'Morning (6 AM - 8 AM)';
+      const orderType = document.querySelector('input[name="order-type"]:checked')?.value || 'One-time Order';
+
+      if (!name) {
+        showToast('Please enter the customer name.', 'error');
+        document.getElementById('cust-name').focus();
+        return null;
+      }
+      if (phone.length < 10) {
+        showToast('Please enter a valid 10-digit mobile number.', 'error');
+        document.getElementById('cust-phone').focus();
+        return null;
+      }
+      if (!address) {
+        showToast('Please enter the delivery address or area.', 'error');
+        document.getElementById('cust-address').focus();
+        return null;
+      }
+
+      const totalAmount = items.reduce((sum, i) => sum + i.subtotal, 0);
+
+      return {
+        id: 'ORD-' + Math.floor(1000 + Math.random() * 9000),
+        customerName: name,
+        customerPhone: phone.slice(-10),
+        address,
+        slot,
+        orderType,
+        items,
+        totalAmount,
+        status: 'Pending',
+        createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+    }
+
+    /**
+     * Build Formatted WhatsApp Order Text
+     */
+    function buildWhatsAppOrderMessage(order) {
+      const lines = order.items.map(
+        (item, idx) => `${idx + 1}. ${item.name} (${item.size}) × ${item.qty} = *₹${item.subtotal}*`
+      );
+
+      return [
+        `🥛 *NEW ORDER – V.S.R MILK* 🌿`,
+        `Order ID: *${order.id}*`,
+        `────────────────────`,
+        `*Order Items:*`,
+        ...lines,
+        `────────────────────`,
+        `💰 *Total Amount: ₹${order.totalAmount}*`,
+        `🕒 *Slot:* ${order.slot}`,
+        `🔄 *Plan:* ${order.orderType}`,
+        `────────────────────`,
+        `👤 *Customer:* ${order.customerName}`,
+        `📞 *Phone:* +91 ${order.customerPhone}`,
+        `📍 *Address:* ${order.address}`,
+        ``,
+        `Thank you for choosing V.S.R Milk! 🙏`
+      ].join('\n');
+    }
+
+    /**
+     * Action 1: Send Order via WhatsApp (Also logs order to dashboard automatically)
+     */
+    function handleSendOrderWhatsApp() {
+      const order = validateOrderForm();
+      if (!order) return;
+
+      // Save to dashboard automatically so no order is lost
+      savedOrders.unshift(order);
+      persistOrders();
+      renderOrdersDashboard();
+
+      const message = buildWhatsAppOrderMessage(order);
+      const encodedMsg = encodeURIComponent(message);
+
+      // If owner phone is set, send directly to V.S.R Milk WhatsApp; otherwise open WhatsApp share picker
+      const targetPhone = businessSettings.phone ? `91${businessSettings.phone}` : '';
+      const waUrl = targetPhone
+        ? `https://wa.me/${targetPhone}?text=${encodedMsg}`
+        : `https://wa.me/?text=${encodedMsg}`;
+
+      showToast('Order logged & opening WhatsApp...', 'success');
+      window.open(waUrl, '_blank');
+    }
+
+    /**
+     * Action 2: Save Order to Dashboard Locally
+     */
+    function handleSaveOrderDashboard() {
+      const order = validateOrderForm();
+      if (!order) return;
+
+      savedOrders.unshift(order);
+      persistOrders();
+      renderOrdersDashboard();
+
+      // Clear quantities & customer fields for next order
+      quantities = {};
+      document.getElementById('cust-name').value = '';
+      document.getElementById('cust-phone').value = '';
+      document.getElementById('cust-address').value = '';
+      renderCatalog();
+      updateOrderSummary();
+
+      showToast(`Order ${order.id} saved to Dashboard!`, 'success');
+      switchTab('admin');
+    }
+
+    /**
+     * Share Price List on WhatsApp from Promotional Banner
+     */
+    function shareCatalogWhatsApp() {
+      const msg = encodeURIComponent(PROMO_TEMPLATES[0]);
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    /**
+     * Navigation Tab Switcher
+     */
+    function switchTab(tabName) {
+      const orderView = document.getElementById('view-order');
+      const adminView = document.getElementById('view-admin');
+      const btnOrder = document.getElementById('tab-btn-order');
+      const btnAdmin = document.getElementById('tab-btn-admin');
+      const stickyBar = document.getElementById('sticky-cart-bar');
+
+      if (tabName === 'order') {
+        orderView.classList.remove('hidden');
+        adminView.classList.add('hidden');
+        btnOrder.className = 'flex-1 py-3 text-sm font-bold border-b-3 border-cream-100 text-cream-50 flex items-center justify-center gap-2 transition';
+        btnAdmin.className = 'flex-1 py-3 text-sm font-semibold border-b-3 border-transparent text-dairyGreen-100 hover:text-white flex items-center justify-center gap-2 transition relative';
+        updateOrderSummary();
+      } else {
+        orderView.classList.add('hidden');
+        adminView.classList.remove('hidden');
+        btnAdmin.className = 'flex-1 py-3 text-sm font-bold border-b-3 border-cream-100 text-cream-50 flex items-center justify-center gap-2 transition relative';
+        btnOrder.className = 'flex-1 py-3 text-sm font-semibold border-b-3 border-transparent text-dairyGreen-100 hover:text-white flex items-center justify-center gap-2 transition';
+        stickyBar.classList.add('translate-y-full');
+        renderOrdersDashboard();
+      }
+    }
+
+    /**
+     * Admin Dashboard: Render Stats & Orders List
+     */
+    function renderOrdersDashboard() {
+      // Calculate Summary Stats
+      let totalOrders = savedOrders.length;
+      let totalLitres = 0;
+      let totalCurds = 0;
+      let totalRevenue = 0;
+      let pendingCount = 0;
+
+      savedOrders.forEach(order => {
+        totalRevenue += Number(order.totalAmount || 0);
+        if (order.status === 'Pending') pendingCount++;
+        order.items.forEach(item => {
+          totalLitres += (item.litres || 0) * item.qty;
+          totalCurds += (item.curds || 0) * item.qty;
+        });
+      });
+
+      document.getElementById('stat-total-orders').textContent = totalOrders;
+      document.getElementById('stat-total-volume').textContent = `${totalLitres.toFixed(2).replace(/\.00$/, '')} L / ${totalCurds} Curd`;
+      document.getElementById('stat-total-revenue').textContent = totalRevenue;
+
+      const badge = document.getElementById('pending-badge');
+      if (pendingCount > 0) {
+        badge.textContent = pendingCount;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+
+      // Filter Orders
+      const filtered = savedOrders.filter(order => {
+        if (currentFilter === 'MORNING') return order.slot.includes('Morning');
+        if (currentFilter === 'EVENING') return order.slot.includes('Evening');
+        if (currentFilter === 'PENDING') return order.status === 'Pending';
+        return true;
+      });
+
+      const container = document.getElementById('orders-list-container');
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl border border-cream-300 p-8 text-center space-y-2">
+            <div class="w-12 h-12 mx-auto rounded-full bg-cream-100 text-warmBrown-600 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <h4 class="font-bold text-warmBrown-800">No orders found for this filter</h4>
+            <p class="text-xs text-warmBrown-600">Switch filters above or create a new order from the Customer Order Form.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered
+        .map(order => {
+          const isDelivered = order.status === 'Delivered';
+          const itemsSummary = order.items
+          .map(i => `${i.qty}× ${i.name}${i.category !== 'curd' ? ` (${i.size})` : ''}`)
+          .join(', ');
+
+          const receiptMsg = encodeURIComponent(
+            `🥛 *V.S.R MILK – Delivery Update*\nHello ${order.customerName},\n\nYour order *${order.id}* (${itemsSummary}) totaling *₹${order.totalAmount}* is scheduled for *${order.slot}*.\nStatus: *${order.status}*\n\nThank you for choosing V.S.R Milk! 🙏`
+          );
+
+          return `
+            <div class="bg-white rounded-2xl border ${isDelivered ? 'border-dairyGreen-600/30 bg-dairyGreen-50/20' : 'border-cream-300'} p-4 shadow-xs space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-extrabold text-sm sm:text-base text-warmBrown-800">${order.customerName}</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-cream-200 text-warmBrown-700">${order.id}</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${
+                      order.orderType.includes('Daily')
+                        ? 'bg-purple-100 text-purple-800'
+                        : 'bg-blue-100 text-blue-800'
+                    }">${order.orderType}</span>
+                  </div>
+                  <p class="text-xs text-warmBrown-600 mt-0.5">
+                    <i class="fa-solid fa-location-dot text-dairyGreen-600 mr-1"></i>${order.address}
+                  </p>
+                </div>
+
+                <!-- Status Toggle Pill -->
+                <button
+                  onclick="toggleOrderStatus('${order.id}')"
+                  class="shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${
+                    isDelivered
+                      ? 'bg-dairyGreen-600 text-white'
+                      : 'bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200'
+                  }"
+                >
+                  <i class="fa-solid ${isDelivered ? 'fa-circle-check' : 'fa-clock'}"></i>
+                  <span>${order.status}</span>
+                </button>
+              </div>
+
+              <!-- Ordered Items Box -->
+              <div class="bg-cream-50 rounded-xl p-2.5 border border-cream-200 flex items-center justify-between gap-2">
+                <div class="text-xs font-medium text-warmBrown-800 leading-relaxed">
+                  ${itemsSummary}
+                </div>
+                <div class="text-base font-extrabold text-dairyGreen-700 shrink-0">
+                  ₹${order.totalAmount}
+                </div>
+              </div>
+
+              <!-- Slot & Direct Customer Contact Actions -->
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                <span class="text-[11px] font-semibold text-warmBrown-600">
+                  <i class="fa-regular fa-clock mr-1"></i>${order.slot} • ${order.createdAt || 'Today'}
+                </span>
+
+                <div class="flex items-center gap-2">
+                  <a
+                    href="tel:+91${order.customerPhone}"
+                    class="px-3 py-2 rounded-xl bg-warmBrown-700 hover:bg-warmBrown-800 text-cream-50 text-xs font-bold flex items-center gap-1.5 transition"
+                  >
+                    <i class="fa-solid fa-phone"></i> Call
+                  </a>
+
+                  <a
+                    href="https://wa.me/91${order.customerPhone}?text=${receiptMsg}"
+                    target="_blank"
+                    class="px-3 py-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white text-xs font-bold flex items-center gap-1.5 transition"
+                  >
+                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                  </a>
+
+                  <button
+                    onclick="confirmDeleteOrder('${order.id}')"
+                    title="Delete Order"
+                    class="w-8 h-8 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center transition"
+                  >
+                    <i class="fa-solid fa-trash-can text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    function setOrderFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.order-filter-btn').forEach(btn => {
+        btn.className = 'order-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-cream-200 text-warmBrown-700 transition';
+      });
+      const activeBtn = document.getElementById(`filter-${filter}`);
+      if (activeBtn) {
+        activeBtn.className = 'order-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-warmBrown-700 text-white transition';
+      }
+      renderOrdersDashboard();
+    }
+
+    function toggleOrderStatus(orderId) {
+      const idx = savedOrders.findIndex(o => o.id === orderId);
+      if (idx === -1) return;
+      savedOrders[idx].status = savedOrders[idx].status === 'Pending' ? 'Delivered' : 'Pending';
+      persistOrders();
+      renderOrdersDashboard();
+      showToast(`Order marked as ${savedOrders[idx].status}`, 'success');
+    }
+
+    function confirmDeleteOrder(orderId) {
+      showConfirmDialog(
+        'Delete Order',
+        `Remove order ${orderId} from your dashboard log?`,
+        () => {
+          savedOrders = savedOrders.filter(o => o.id !== orderId);
+          persistOrders();
+          renderOrdersDashboard();
+          showToast('Order deleted', 'info');
+        }
+      );
+    }
+
+    /**
+     * Promotional Broadcast Tools
+     */
+    function selectPromoTemplate(index) {
+      document.getElementById('promo-message-box').value = PROMO_TEMPLATES[index];
+      document.querySelectorAll('.promo-pill').forEach((pill, i) => {
+        if (i === index) {
+          pill.className = 'promo-pill shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-dairyGreen-600 text-white transition';
+        } else {
+          pill.className = 'promo-pill shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-warmBrown-700 border border-cream-300 transition';
+        }
+      });
+    }
+
+    function copyPromoMessage() {
+      const textarea = document.getElementById('promo-message-box');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        showToast('Promotional message copied to clipboard!', 'success');
+      } catch (err) {
+        showToast('Unable to copy text automatically.', 'error');
+      }
+      window.getSelection().removeAllRanges();
+    }
+
+    function sharePromoWhatsApp() {
+      const msg = document.getElementById('promo-message-box').value.trim();
+      if (!msg) {
+        showToast('Please enter a promotional message first.', 'error');
+        return;
+      }
+      const phone = document.getElementById('promo-target-phone').value.trim().replace(/\D/g, '');
+      const encoded = encodeURIComponent(msg);
+      const url = phone.length >= 10
+        ? `https://wa.me/91${phone.slice(-10)}?text=${encoded}`
+        : `https://wa.me/?text=${encoded}`;
+
+      window.open(url, '_blank');
+    }
+
+    /**
+     * Business Settings Modal Functions
+     */
+    function openBusinessSettingsModal() {
+      document.getElementById('owner-phone-input').value = businessSettings.phone || '';
+      document.getElementById('owner-area-input').value = businessSettings.area || '';
+      const modal = document.getElementById('business-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBusinessSettingsModal() {
+      const modal = document.getElementById('business-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveBusinessSettings() {
+      const phone = document.getElementById('owner-phone-input').value.trim().replace(/\D/g, '').slice(-10);
+      const area = document.getElementById('owner-area-input').value.trim();
+
+      businessSettings.phone = phone;
+      if (area) businessSettings.area = area;
+
+      localStorage.setItem('vsr_milk_settings', JSON.stringify(businessSettings));
+      applyBusinessSettingsToUI();
+      updateCustomerWaLinkUI();
+      closeBusinessSettingsModal();
+      showToast('V.S.R Milk settings updated!', 'success');
+    }
+
+    function applyBusinessSettingsToUI() {
+      const subtitle = document.getElementById('banner-area-subtitle');
+      if (subtitle && businessSettings.area) {
+        subtitle.textContent = businessSettings.area;
+      }
+      const quickInput = document.getElementById('quick-wa-number');
+      if (quickInput) {
+        quickInput.value = businessSettings.phone || '';
+      }
+      const modalInput = document.getElementById('modal-wa-number');
+      if (modalInput) {
+        modalInput.value = businessSettings.phone || '';
+      }
+    }
+
+    /**
+     * Quick Share Website Link Modal Controls
+     */
+    function isPrivatePreviewEnv() {
+      const href = window.location.href || '';
+      return href.startsWith('about:') || href.startsWith('blob:') || href.startsWith('file:') || window.location.protocol === 'about:';
+    }
+
+    function downloadIndexHtml() {
+      try {
+        const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast('Downloaded index.html! Upload free on GitHub Pages or Cloudflare Pages.', 'success');
+      } catch (err) {
+        showToast('Please copy the code from the editor and save as index.html', 'info');
+      }
+    }
+
+    function openShareWebsiteModal() {
+      applyBusinessSettingsToUI();
+      updateCustomerWaLinkUI();
+      const warningBox = document.getElementById('preview-host-warning');
+      if (warningBox) {
+        if (isPrivatePreviewEnv()) {
+          warningBox.classList.remove('hidden');
+        } else {
+          warningBox.classList.add('hidden');
+        }
+      }
+      const modal = document.getElementById('share-website-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeShareWebsiteModal() {
+      const modal = document.getElementById('share-website-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    /**
+     * Customer Order App Link Generator & Sharing Helpers
+     */
+    function handleQuickWaNumberChange(rawVal) {
+      const cleaned = rawVal.replace(/\D/g, '').slice(0, 10);
+      const quickInput = document.getElementById('quick-wa-number');
+      if (quickInput && quickInput.value !== cleaned) {
+        quickInput.value = cleaned;
+      }
+      const modalInput = document.getElementById('modal-wa-number');
+      if (modalInput && modalInput.value !== cleaned) {
+        modalInput.value = cleaned;
+      }
+      businessSettings.phone = cleaned;
+      try {
+        localStorage.setItem('vsr_milk_settings', JSON.stringify(businessSettings));
+      } catch (err) {
+        console.error('Error saving WhatsApp number:', err);
+      }
+      updateCustomerWaLinkUI();
+    }
+
+    function buildCustomerDirectAppLink() {
+      const baseUrl = window.location.href.split('?')[0].split('#')[0];
+      const params = new URLSearchParams();
+      const cleanPhone = (businessSettings.phone || '').replace(/\D/g, '');
+      if (cleanPhone.length === 10) {
+        params.set('wa', cleanPhone);
+      }
+      const queryString = params.toString();
+      return queryString ? `${baseUrl}?${queryString}` : baseUrl;
+    }
+
+    function updateCustomerWaLinkUI() {
+      const linkInput = document.getElementById('generated-wa-link');
+      const modalLinkInput = document.getElementById('modal-generated-link');
+      const link = buildCustomerDirectAppLink();
+      if (linkInput) linkInput.value = link;
+      if (modalLinkInput) modalLinkInput.value = link;
+    }
+
+    function copyCustomerOrderLink(inputId = 'generated-wa-link') {
+      if ((businessSettings.phone || '').length < 10) {
+        showToast('Tip: Enter your 10-digit WhatsApp number so orders go straight to you!', 'info');
+      }
+      const linkInput = document.getElementById(inputId);
+      if (!linkInput) return;
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        showToast('Customer Website Link copied!', 'success');
+      } catch (err) {
+        showToast('Could not copy link automatically.', 'error');
+      }
+      window.getSelection().removeAllRanges();
+    }
+
+    function shareCustomerOrderInvite() {
+      if ((businessSettings.phone || '').length < 10) {
+        showToast('Please enter your 10-digit V.S.R WhatsApp number first.', 'error');
+        const modalInput = document.getElementById('modal-wa-number');
+        const quickInput = document.getElementById('quick-wa-number');
+        if (modalInput && !document.getElementById('share-website-modal').classList.contains('hidden')) {
+          modalInput.focus();
+        } else if (quickInput) {
+          quickInput.focus();
+        }
+        return;
+      }
+
+      const directAppUrl = buildCustomerDirectAppLink();
+      const inviteMessage = [
+        `🥛 *V.S.R MILK – Farm Fresh Dairy* 🌿`,
+        ``,
+        `Order *Pure Buffalo Milk*, *Fresh Cow Milk*, and *Fresh Curd Packet (100 gm) – ₹10* directly online!`,
+        ``,
+        `👇 *Open our website, select the products you want & enter your address:*`,
+        directAppUrl
+      ].join('\n');
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(inviteMessage)}`, '_blank');
+    }
+
+    /**
+     * Custom Toast & Confirm Dialog Utilities (No alert() or confirm())
+     */
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const styles = {
+        success: 'bg-dairyGreen-700 text-white border-dairyGreen-600',
+        error: 'bg-red-600 text-white border-red-500',
+        info: 'bg-warmBrown-800 text-cream-50 border-warmBrown-700'
+      };
+      const icons = {
+        success: 'fa-circle-check',
+        error: 'fa-circle-exclamation',
+        info: 'fa-circle-info'
+      };
+
+      toast.className = `${styles[type] || styles.info} border px-4 py-3 rounded-xl shadow-lg text-xs sm:text-sm font-semibold flex items-center gap-2.5 animate-fade-up`;
+      toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => toast.remove(), 250);
+      }, 2800);
+    }
+
+    function showConfirmDialog(title, message, onConfirm) {
+      const modal = document.getElementById('confirm-modal');
+      document.getElementById('confirm-title').textContent = title;
+      document.getElementById('confirm-message').textContent = message;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      const cancelBtn = document.getElementById('confirm-cancel-btn');
+      const okBtn = document.getElementById('confirm-ok-btn');
+
+      const cleanup = () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        cancelBtn.onclick = null;
+        okBtn.onclick = null;
+      };
+
+      cancelBtn.onclick = cleanup;
+      okBtn.onclick = () => {
+        cleanup();
+        onConfirm();
+      };
+    }
+  </script>
+</body>
+</html>
